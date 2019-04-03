@@ -1,0 +1,30 @@
+{
+  "name": "@agc-calculators/livestock",
+  "version": "1.0.0",
+  "description": "A collection of livestock calculators.",
+  "author": "John Robinson <johnrob1880@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist/cjs/*",
+    "dist/esm/*",
+    "dist/umd/*"
+  ],
+  "scripts": {
+    "prepare": "rollup -c",
+    "build": "rollup -c",
+    "test": "npm run build && jest"
+  },
+  "dependencies": {
+    "@agc-calculators/calculators-core": "1.0.0"    
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "rollup": "^1.7.4",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-terser": "^4.0.4",
+    "rollup-plugin-node-resolve": "^4.0.1"
+  }
+}
