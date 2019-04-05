@@ -1,6 +1,6 @@
 {
   "name": "@agc-calculators/livestock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of livestock calculators.",
   "author": "John Robinson <johnrob1880@gmail.com>",
   "homepage": "",
@@ -18,7 +18,10 @@
     "test": "npm run build && jest"
   },
   "dependencies": {
-    "@agc-calculators/calculators-core": "1.0.0"    
+    "@agc-calculators/calculators-core": "1.0.1"    
+  },
+  "peerDependencies": {
+    "@agc-calculators/calculators-core": "1.0.1"    
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

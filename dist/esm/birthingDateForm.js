@@ -96,6 +96,62 @@ var birthingDateForm = {
       subject: 'Birthing Third Partition',
       from: thirdPartition
     })
+  },
+  dashboard: {
+    birthingDate: {
+      id: 'birthing-date',
+      title: 'Birthing Date',
+      calculator: 'birthing-date',
+      widget: 'date',
+      params: {
+        date: 'birthingDate'
+      }
+    },
+    firstPartition: {
+      id: 'first-partition',
+      title: 'First Partition',
+      calculator: 'birthing-date',
+      widget: 'date',
+      params: {
+        date: 'firstPartition'
+      }
+    },
+    secondPartition: {
+      id: 'second-partition',
+      title: 'Second Partition',
+      calculator: 'birthing-date',
+      widget: 'date',
+      params: {
+        date: 'secondPartition'
+      }
+    },
+    thirdPartition: {
+      id: 'third-partition',
+      title: 'Third Partition',
+      calculator: 'birthing-date',
+      widget: 'date',
+      params: {
+        date: 'thirdPartition'
+      }
+    },
+    daysTillBirthing: {
+      id: 'days-till-birthing',
+      title: 'Days Until Birthing',
+      calculator: 'birthing-date',
+      widget: 'countdown',
+      params: {
+        from: 'birthingDate'
+      }
+    },
+    daysBred: {
+      id: 'days-bred',
+      title: 'Days Bred',
+      calculator: 'birthing-date',
+      widget: 'countup',
+      params: {
+        from: 'birthingDate'
+      }
+    }
   }
 };
 

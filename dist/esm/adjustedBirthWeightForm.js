@@ -29,14 +29,14 @@ var adjustedBirthWeightForm = {
     }
   },
   outputs: {
-    adjustment: {
-      type: 'number',
-      label: 'Adjustment',
-      units: 'lbs'
-    },
     adjustedBirthWeight: {
       type: 'number',
       label: 'Adjusted Birth Weight',
+      units: 'lbs'
+    },
+    adjustment: {
+      type: 'number',
+      label: 'Adjustment',
       units: 'lbs'
     },
     calculated: {
@@ -58,6 +58,58 @@ var adjustedBirthWeightForm = {
   },
   formatters: {
     ageOfDam: val => damAgeOptionLabels[val] || val
+  },
+  calendar: {
+    adjustedBirthWeight: ({
+      calculated,
+      adjustment,
+      adjustedBirthWeight,
+      units = 'lbs'
+    }) => ({
+      subject: 'Adjusted Birth Weight',
+      details: `${adjustedBirthWeight} ${units} ${adjustment > 0 ? `(+${adjustment} ${units})` : ''}`,
+      from: calculated
+    })
+  },
+  dashboard: {
+    adjustedBirthWeight: {
+      id: 'adjusted-birth-weight',
+      calculator: 'adj-birth-weight',
+      widget: 'measure',
+      params: {
+        title: 'Adjusted Birth Weight',
+        measure: ({
+          adjustedBirthWeight,
+          units = 'lbs'
+        }) => `${adjustedBirthWeight} ${units}`,
+        units: 'lbs',
+        source: 'calculator',
+        details: ({
+          adjustment,
+          ageOfDam,
+          formatters,
+          units = 'lbs'
+        }) => `Adjusted ${adjustment} ${units} (${formatters['ageOfDam'](ageOfDam)})`
+      }
+    },
+    adjustment: {
+      id: 'adjusted-birth-weight-adjustement',
+      calculator: 'adj-birth-weight',
+      widget: 'measure',
+      params: {
+        title: 'Adjusted Birth Weight Adjustment',
+        measure: ({
+          adjustment,
+          units = 'lbs'
+        }) => `${adjustment} ${units}`,
+        units: 'lbs',
+        source: 'calculator',
+        details: ({
+          ageOfDam,
+          formatters
+        }) => `Based on a ${formatters['ageOfDam'](ageOfDam).replace('Years', 'Year')} dam.`
+      }
+    }
   }
 };
 

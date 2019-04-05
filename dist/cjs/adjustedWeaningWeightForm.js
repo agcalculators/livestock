@@ -9,7 +9,7 @@ var adjustedWeaningWeightForm = {
   id: 'adj-weaning-weight',
   name: 'Adjusted 205 Day Weaning Weight',
   category: 'livestock',
-  description: 'Calculates an adjusted weaning weight at 204 days based on gender, dam age, current age and weight.',
+  description: 'Calculates an adjusted weaning weight at 205 days based on gender, dam age, current age and weight.',
   inputs: {
     gender: {
       type: 'select',
@@ -110,6 +110,40 @@ var adjustedWeaningWeightForm = {
   formatters: {
     gender: val => __chunk_2.genderOptionLabels[val] || val,
     ageOfDam: val => __chunk_2.damAgeOptionLabels[val] || val
+  },
+  calendar: {
+    adjustedWeaningWeight: ({
+      calculated,
+      adjustment,
+      adjustedWeaningWeight,
+      units = 'lbs'
+    }) => ({
+      subject: 'Adjusted 205 Day Weaning Weight',
+      details: `${adjustedWeaningWeight} ${units} ${adjustment > 0 ? `(+${adjustment} ${units})` : ''}`,
+      from: calculated
+    })
+  },
+  dashboard: {
+    adjustedWeaningWeight: {
+      id: 'adjusted-weaning-weight',
+      calculator: 'adj-weaning-weight',
+      widget: 'measure',
+      params: {
+        title: 'Adjusted 205 Day Weaning Weight',
+        measure: ({
+          adjustedWeaningWeight,
+          units = 'lbs'
+        }) => `${adjustedWeaningWeight} ${units}`,
+        units: 'lbs',
+        source: 'calculator',
+        details: ({
+          adjustment,
+          ageOfDam,
+          formatters,
+          units = 'lbs'
+        }) => `Adjusted ${adjustment} ${units} (${formatters['ageOfDam'](ageOfDam)})`
+      }
+    }
   }
 };
 

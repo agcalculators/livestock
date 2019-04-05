@@ -1,6 +1,6 @@
 'use strict';
 
-require('@agc-calculators/calculators-core');
+var calculatorsCore = require('@agc-calculators/calculators-core');
 require('./chunk-e9ad9a45.js');
 var adjustedYearlingWeight = require('./adjustedYearlingWeight.js');
 
@@ -71,6 +71,40 @@ var adjustedYearlingWeightForm = {
       required: 'Adjusted weaning weight is required.',
       number: 'Adjusted weaning weight must be a number.',
       min: 'Adjusted weaning weight should be greater than zero.'
+    }
+  },
+  formatters: {
+    date: val => calculatorsCore.formatDate(val) || val
+  },
+  calendar: {
+    adjustedYearlingWeight: ({
+      calculated,
+      adjustedYearlingWeight,
+      units = 'lbs'
+    }) => ({
+      subject: 'Adjusted 365 Day Yearling Weight',
+      details: `${adjustedYearlingWeight} ${units} ${adjustment > 0 ? `(+${adjustment} ${units})` : ''}`,
+      from: calculated
+    })
+  },
+  dashboard: {
+    adjustedYearlingWeight: {
+      id: 'adjusted-yearling-weight',
+      calculator: 'adj-yearling-weight',
+      widget: 'measure',
+      params: {
+        title: 'Adjusted 365 Day Yearling Weight',
+        measure: ({
+          adjustedYearlingWeight,
+          units = 'lbs'
+        }) => `${adjustedYearlingWeight} ${units}`,
+        units: 'lbs',
+        source: 'calculator',
+        details: ({
+          calculated,
+          formatters
+        }) => `Measurement taken on ${formatters['date'](calculated)}`
+      }
     }
   }
 };

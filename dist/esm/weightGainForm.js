@@ -89,6 +89,16 @@ var weightGainForm = {
   },
   formatters: {
     feedConversionRate: val => `${val}:1`
+  },
+  widgets: {
+    weightGainPerHead: {
+      id: 'weight-gain-per-head',
+      calculator: 'weight-gain'
+    },
+    totalWeightGain: {
+      id: 'total-weight-gain',
+      calculator: 'weight-gain'
+    }
   }
 };
 
